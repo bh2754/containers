@@ -12,7 +12,7 @@
   "repositories": ["bh2754/containers"],
   "onboarding": false,
   "requireConfig": "optional",
-  "gitAuthor": "bh2754-tinker[bot] <>",
+  "gitAuthor": "bh2754-tinker-bot <>",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "commitBodyTable": true,
