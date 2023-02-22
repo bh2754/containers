@@ -1,60 +1,3 @@
-FROM alpine:edge AS builder
-RUN apk add --no-cache \
-    autoconf \
-    automake \
-    binutils \
-    cmake \
-    curl \
-    dpkg \
-    file \
-    g++ \
-    gcc \
-    git \
-    libc6-compat \
-    libdrm-dev \
-    libtool \
-    libxshmfence \
-    linux-headers \
-    make \
-    mesa-va-gallium \
-    musl-dev \
-    nghttp2-dev \
-    pkgconfig \
-    xxd
-
-WORKDIR /tmp/amd
-
-RUN ls -la /usr/lib/
-
-RUN apk add  xf86-video-amdgpu linux-firmware-amdgpu --no-cache --update-cache \
- && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing libva-utils \
- && mkdir -p "/output/usr/bin" \
- && cp -a /usr/bin/vainfo "/output/usr/bin" \
- && mkdir -p "/output/usr/lib" \
- && cp -a /usr/lib/libX*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libwayland*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libva*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libdrm*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libbsd*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libxshmfence*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libxcb*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libffi*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libLLVM*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libzstd*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libexpat*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libelf*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libstdc++*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libgcc_s*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libmd*.so* "/output/usr/lib" \
- && cp -a /usr/lib/libxml2*.so* "/output/usr/lib" \
- && mkdir -p "/output/usr/lib/dri" \
- && cp -a /usr/lib/dri/*.so* "/output/usr/lib/dri" \
- && mkdir -p "/output/usr/share/libdrm" \
- && cp -a /usr/share/libdrm/* "/output/usr/share/libdrm" \
- && cp -a /lib/ld-musl-x86_64.so.1 "/output/usr/lib" \
- && cp -a /lib/libz*.so* "/output/usr/lib"
-
-
 FROM ghcr.io/bh2754/ubuntu:jammy-20230126@sha256:a1e5bc2f33d75973bf0f69d530935835125d15aa27464b492e117eae7889b326
 
 ARG TARGETPLATFORM
@@ -73,10 +16,10 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility" \
 # hadolint ignore=DL3008,DL3015,SC2039,SC2086
 RUN \
     case "${TARGETPLATFORM}" in \
-        'linux/arm64') \
+        'linux/amd64') \
             export ARCH='amd64'; \
         ;; \
-        'linux/amd64') \
+        'linux/arm64') \
             export ARCH='arm64'; \
         ;; \
     esac \
