@@ -73,11 +73,11 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility" \
 # hadolint ignore=DL3008,DL3015,SC2039,SC2086
 RUN \
     case "${TARGETPLATFORM}" in \
-        'linux/amd64') \
-            export ARCH='amd64'; \
-        ;; \
         'linux/arm64') \
             export ARCH='arm64'; \
+        ;; \
+        'linux/amd64') \
+            export ARCH='amd64'; \
         ;; \
     esac \
     && \
