@@ -26,6 +26,11 @@ RUN \
         uuid-runtime \
         xmlstarlet \
         ca-certificates \
+        mesa-va-drivers \
+        vainfo \
+        mesa-vdpau-drivers \
+        libdrm-amdgpu1 \
+        libavutil56 \
     && \
     curl -fsSL -o /tmp/plex.deb \
         "${PLEX_DOWNLOAD}/${VERSION}/debian/plexmediaserver_${VERSION}_${ARCH}.deb" \
