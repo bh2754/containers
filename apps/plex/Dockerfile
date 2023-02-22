@@ -74,10 +74,10 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility" \
 RUN \
     case "${TARGETPLATFORM}" in \
         'linux/arm64') \
-            export ARCH='arm64'; \
+            export ARCH='amd64'; \
         ;; \
         'linux/amd64') \
-            export ARCH='amd64'; \
+            export ARCH='arm64'; \
         ;; \
     esac \
     && \
