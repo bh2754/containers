@@ -15,10 +15,10 @@ ENV PATH $GOPATH/bin:$PATH
 #hadolint ignore=DL3018
 RUN \
     apk add --no-cache git go upx \
-    && go install -ldflags="-s -w" "github.com/davidnewhall/unpackerr@v${VERSION}" \
+    && go install -ldflags="-s -w" "github.com/Unpackerr/unpackerr@v${VERSION}" \
     && upx --ultra-brute /go/bin/unpackerr
 
-FROM ghcr.io/onedr0p/alpine:rolling@sha256:6d6a07c8c747e58846bb3125d4e14bb64cdea6287faef647ba072740892517f1
+FROM ghcr.io/bh2754/alpine:rolling@sha256:b8e59d939163467b7f9190aff1ff02ad47c919b444f3518174b4a91bde06126d
 
 ARG TARGETPLATFORM
 ARG VERSION
