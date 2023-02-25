@@ -28,12 +28,12 @@ RUN \
     printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[bh2754](https://github.com/bh2754)" "${WHISPARR__BRANCH}" "${VERSION}" > /app/package_info \
     && chown -R root:root /app \
     && chmod -R 755 /app \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* \
+    && chmod +x ./apps/whisparr/entrypoint.sh
 
 USER kah
 COPY ./apps/whisparr/config.xml.tmpl /app/config.xml.tmpl
 COPY ./apps/whisparr/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]
 
 LABEL org.opencontainers.image.source="https://github.com/Whisparr/Whisparr"
