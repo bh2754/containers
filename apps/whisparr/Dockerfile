@@ -33,6 +33,7 @@ RUN \
 USER kah
 COPY ./apps/whisparr/config.xml.tmpl /app/config.xml.tmpl
 COPY ./apps/whisparr/entrypoint.sh /entrypoint.sh
+RUN chmod +x /sbin/docker-entrypoint.sh
 CMD ["/entrypoint.sh"]
 
 LABEL org.opencontainers.image.source="https://github.com/Whisparr/Whisparr"
