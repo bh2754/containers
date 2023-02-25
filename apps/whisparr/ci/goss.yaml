@@ -14,4 +14,7 @@ port:
 http:
   http://localhost:6969:
     status: 200
-    timeout: 8000
+    timeout: 3000
+dns:
+  localhost:
+    resolvable: true
