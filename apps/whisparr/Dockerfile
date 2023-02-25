@@ -1,16 +1,14 @@
-FROM ghcr.io/bh2754/alpine:rolling@efc7d6f2cd3976e630ba9266a5e2a730db4d32167ed58154bd5920b5880f6eae
+FROM ghcr.io/bh2754/alpine:rolling@sha256:efc7d6f2cd3976e630ba9266a5e2a730db4d32167ed58154bd5920b5880f6eae
 
 ARG TARGETPLATFORM
-ARG BUILDPLATFORM
 ARG VERSION
 ARG CHANNEL
 
 ENV \
     WHISPARR__INSTANCE_NAME="Whisparr" \
     WHISPARR__BRANCH="${CHANNEL}" \
-    WHISPARR__PORT="6969"
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+    WHISPARR__PORT="6969" \
+    WHISPARR__ANALYTICS_ENABLED="False"
 
 #hadolint ignore=DL3018
 RUN apk add --no-cache ca-certificates icu-libs libintl sqlite-libs xmlstarlet
@@ -27,7 +25,7 @@ RUN \
     rm -rf \
         /app/Whisparr.Update \
     && \
-    printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[bh2754](https://github.com/bh2754)" "${WHISPARR__BRANCH}" "${VERSION}" > /app/package_info \
+    printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[onedr0p](https://github.com/onedr0p)" "${WHISPARR__BRANCH}" "${VERSION}" > /app/package_info \
     && chown -R root:root /app \
     && chmod -R 755 /app \
     && rm -rf /tmp/*
