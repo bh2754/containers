@@ -26,7 +26,6 @@ RUN \
             && \
             export ARCH='amd64'; \
             export EXTRA_INSTALL_ARG='intel-media-va-driver-non-free nvidia-opencl-icd-340 i965-va-driver mesa-va-drivers';; \
-    esac \
     && \
     apt-get -qq update \
     && \
