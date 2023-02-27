@@ -16,15 +16,11 @@ RUN \
         apt-transport-https \
         ca-certificates \
         git \
+    curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
+    && echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu jammy main' > /etc/apt/sources.list.d/intel.list \
     && \
-    "curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg"
-    case "${TARGETPLATFORM}" in \
-        'linux/amd64') \
-            curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
-            && echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu jammy main' > /etc/apt/sources.list.d/intel.list \
-            && \
-            export ARCH='amd64'; \
-            export EXTRA_INSTALL_ARG='intel-media-va-driver-non-free nvidia-opencl-icd-340 i965-va-driver mesa-va-drivers';; \
+    export ARCH='amd64'; \
+    export EXTRA_INSTALL_ARG='intel-media-va-driver-non-free nvidia-opencl-icd-340 i965-va-driver mesa-va-drivers';; \
     && \
     apt-get -qq update \
     && \
@@ -32,7 +28,7 @@ RUN \
         ca-certificates \
         ${EXTRA_INSTALL_ARG} \
     && \
-    curl -fsSL "https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key" | apt-key add - && \
+    curl -fsSL "https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key" | apt-key --dearmor add - && \
     echo "deb [arch=${ARCH}] https://repo.jellyfin.org/ubuntu jammy main" | tee /etc/apt/sources.list.d/jellyfin.list && \
     apt-get -qq update && \
     apt-get -qq install -y \
