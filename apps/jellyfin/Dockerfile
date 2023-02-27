@@ -12,6 +12,12 @@ RUN \
     && \
     apt-get -qq install -y \
         gnupg2 \
+        curl \
+        apt-transport-https \
+        ca-certificates \
+        git \
+    && \
+    curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg
     && \
     case "${TARGETPLATFORM}" in \
         'linux/amd64') \
