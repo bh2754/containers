@@ -13,9 +13,6 @@ RUN \
     apt-get -qq install -y \
         gnupg2 \
     && \
-    curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
-    && echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu jammy main' > /etc/apt/sources.list.d/intel.list \
-    && \
     export ARCH='amd64'; \
     export EXTRA_INSTALL_ARG='intel-media-va-driver-non-free nvidia-opencl-icd-340 i965-va-driver mesa-va-drivers'; \
     ;; \
