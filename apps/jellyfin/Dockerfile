@@ -1,4 +1,4 @@
-FROM ghcr.io/onedr0p/ubuntu:jammy-20221101@sha256:bf2d52a2e698ab9c2e0a1af7f7b70b9806091c5ca21d9f1a4d1c3809f41e5e93
+FROM ghcr.io/onedr0p/ubuntu:jammy-20230301@sha256:c3b32e55263e8d7dab8203a10aa29cd56b3cddd3da76e252d3abb65587d9e4b7
 
 ARG TARGETPLATFORM
 ARG VERSION
