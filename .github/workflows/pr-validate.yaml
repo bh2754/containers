@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   simple-checks:
-    uses: onedr0p/containers/.github/workflows/simple-checks.yaml@main
+    uses: bh2754/containers/.github/workflows/simple-checks.yaml@main
 
   get-changed-images:
     uses: onedr0p/containers/.github/workflows/get-changed-images.yaml@main
