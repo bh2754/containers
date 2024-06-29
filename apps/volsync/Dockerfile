@@ -1,4 +1,4 @@
-ARG VERSION
+ARG VERSION #
 FROM docker.io/library/golang:1.22-alpine as volsync
 ARG VERSION
 ARG TARGETOS
